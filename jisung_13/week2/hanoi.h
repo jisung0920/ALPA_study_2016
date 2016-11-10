@@ -10,5 +10,9 @@ char pop(stack);
 char top(stack);
 void push(stack,char ring);
 
+char outputTower(stack target); 
+void inputTower(stack target, char ring);
+void HanoiSort(stack a,stack b, stack c,int size);
+
 
 

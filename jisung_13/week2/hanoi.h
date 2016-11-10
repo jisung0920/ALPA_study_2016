@@ -1,20 +1,23 @@
 #include <stdio.h>
 #define SIZE 20
 
+typedef char Data;
 typedef struct stack{
-	char st[SIZE];
+	Data st[SIZE];
 	int top=0;
 }stack;
 
-char pop(stack);
-char top(stack);
-void push(stack,char ring);
+void stackInit(stack*);
+int stackEmpty(stack*);
+char pop(stack*);
+char top(stack*);
+void push(stack*,Data ring);
 
 void initTower(stack a,int size);
 
-char outputTower(stack target); 
-void inputTower(stack target, char ring);
-void HanoiSort(stack a,stack b, stack c,int size);
+char outputTower(stack *target); 
+void inputTower(stack *target, Data ring);
+void HanoiSort(stack *a,stack *b, stack *c,int size);
 
 
 

@@ -1,5 +1,9 @@
 #include "hanoi.h"
 
+void setName(stack * tower, char c){
+	tower->name=c;
+}
+
 void stackInit(stack * tower){
 	tower->top = -1;	
 }
@@ -11,7 +15,7 @@ int stackEmpty(stack *tower){
 		return 0;
 }
 
-char pop(stack *tower){
+Data pop(stack *tower){
 	if(stackEmpty(tower)){
 		printf("stack is empty\n");
 		exit(-1);	
@@ -21,7 +25,7 @@ char pop(stack *tower){
 	
 }
 
-char top(stack *tower){
+Data top(stack *tower){
 	return tower->ring[tower->top];
 }
 
@@ -38,7 +42,7 @@ void push(stack *tower,Data nring){
 //addtion function
 
 void stackPrint(stack *tower){
-	if(!stackEmpty(tower)){
+	if((tower->top)>-2){//also empty stack
 		for(int i=0;i<(SIZE);i++){
 			if(i<(tower->top)+1)
 				printf("[%c]",tower->ring[i]);
@@ -48,15 +52,15 @@ void stackPrint(stack *tower){
 		putchar('\n');
 	}//untill stack size
 	else
-		printf("stack is empty\n");
+		printf("stack print error\n");
 }
 
 int stackPusher(stack *tower){
 	int n;
-	printf("input ring number(MAX 20) : ");
+	printf("input ring number(MAX %d) : ",SIZE);
 	scanf("%d",&n);
 	
-	if(n<1 || n>20){
+	if(n<1 || n>SIZE){
 		printf("input error\n");
 		exit(-1) ;
 	}
@@ -66,4 +70,4 @@ int stackPusher(stack *tower){
 
 	return n;
 }//push char type data into stack 
-
+//this function has type dependency(char)

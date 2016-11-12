@@ -3,7 +3,7 @@
 
 typedef char Data;
 typedef struct stack{
-	Data st[SIZE];
+	Data ring[SIZE];
 	int top=0;
 }stack;
 
@@ -12,6 +12,7 @@ int stackEmpty(stack*);
 char pop(stack*);
 char top(stack*);
 void push(stack*,Data ring);
+void stackPrint(stack *);
 
 void initTower(stack a,int size);
 

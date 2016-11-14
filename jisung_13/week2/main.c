@@ -15,6 +15,7 @@ int main(void){
 	//stack init and name setting
 
 	size = stackPusher(&X);	//input stack and resive size 
+	
 
 	printf("\n========================================\n");
 	stackPrint(&X);

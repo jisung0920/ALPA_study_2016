@@ -61,7 +61,7 @@ int mystrcmp(char* str1, char* str2) {
 	}
 }
 
-char* mystrchr(char* str1, char c) {
+char* mystrchr(char* str1, int c) {
 	int i=0;
 	int cnt=-1;
 

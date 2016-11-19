@@ -6,7 +6,7 @@ void print_str(char* str1, char* str2) {
 
 void print_strlen(char* str) {
 	puts("print strlen");
-	printf("str : %s\n strlen : %d\n", str, mystrlen(str));
+	printf("str : %s\nstrlen : %d\n", str, mystrlen(str));
 }
 
 void print_strcpy(char* str1, char* str2) {
@@ -44,7 +44,7 @@ void print_strcmp(char* str1, char* str2) {
 	}
 }
 
-void print_strchr(char* str, char c) {
+void print_strchr(char* str, int c) {
 	puts("print strchr");
 	printf("str : %s\n",str);
 	puts("result");

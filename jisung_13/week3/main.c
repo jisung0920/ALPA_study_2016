@@ -9,7 +9,6 @@ int main(void){
   char s4[] = "University";
   char s5[] = "Hello World";
 
-  printf("%s\n",s6);
   printf("function \n");
   printf("strlen \t%lu\t%d\n",strlen(s1),mStrlen(s1));
   mStrcpy(s3,s4);

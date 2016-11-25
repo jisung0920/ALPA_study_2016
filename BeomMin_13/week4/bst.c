@@ -37,15 +37,18 @@ void insert(node* newNode) {
 }
 
 void delete(int key) {
-	node* delNode = search(key);
-	node* repNode = delNode->left_child;
-	node* lefNode;
+//	node* delNode = search(key);
+//	node* repNode = delNode->left_child;
+//	node* lefNode;
 
-	if(delNode == NULL) {
-		printf("%d is not exist",key);
+	if(search(key) == NULL) {
+		printf("%d is not exist\n",key);
 		exit(1);
 	}
 	else {
+		node* delNode = search(key);
+		node* repNode;
+		node* lefNode;
 		if (delNode->left_child == NULL && delNode->right_child == NULL) {
 			if (delNode->parent->key > delNode->key) {
 				delNode->parent->left_child = NULL;
@@ -57,6 +60,7 @@ void delete(int key) {
 			}
 		}
 		else if (delNode->left_child != NULL && delNode->right_child != NULL) {	
+			repNode = delNode->left_child;
 			while(repNode->right_child != NULL) {
 				repNode = repNode->right_child;
 			}			
@@ -72,9 +76,11 @@ void delete(int key) {
 			}
 
 			if (delNode == tree->root) {
-				repNode->right_child = delNode->parent;
+				repNode->parent->right_child = NULL;
+				repNode->right_child = delNode->right_child;
 				repNode->parent =  delNode->parent;
 				lefNode->left_child = delNode->left_child;
+				
 				tree->root = repNode;
 				delNode->left_child->parent = repNode;
 				delNode->right_child->parent = repNode;
@@ -100,9 +106,11 @@ void delete(int key) {
 				}
 			}
 			else {
+				repNode->parent->right_child = NULL;
 				repNode->right_child = delNode->right_child;
 				lefNode->left_child = delNode->left_child;
 				repNode->parent = delNode->parent;
+				
 				
 				delNode->left_child->parent = lefNode;
 				delNode->right_child->parent = repNode;

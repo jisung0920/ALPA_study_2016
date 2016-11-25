@@ -7,19 +7,19 @@ void insert(node* newNode) {
 	}
 
 	if (tree->root == NULL) {
-		tree->root = newNode;
+		Root = newNode;
 	}
 	else {
-		node* temp = tree->root;
+		node* temp = Root;
 		while(1) {
-			if (temp->key > newNode->key) {
+			if (cmp(temp,newNode)) {
 				if (temp->left_child == NULL) {
 					newNode->parent = temp;
 					temp->left_child = newNode;
 					break;
 				}
 				else {
-					temp = temp->left_child;
+					MoveLeft(temp);
 				}
 			}
 			else {
@@ -29,7 +29,7 @@ void insert(node* newNode) {
 					break;
 				}
 				else {
-					temp= temp->right_child;
+					MoveRight(temp);
 				}
 			}
 		}
@@ -49,8 +49,8 @@ void delete(int key) {
 		node* delNode = search(key);
 		node* repNode;
 		node* lefNode;
-		if (delNode->left_child == NULL && delNode->right_child == NULL) {
-			if (delNode->parent->key > delNode->key) {
+		if (HaveZeroChild(delNode)) {
+			if (cmp(delNode->parent, delNode)) {
 				delNode->parent->left_child = NULL;
 				delNode->parent = NULL;
 			}
@@ -59,29 +59,29 @@ void delete(int key) {
 				delNode->parent = NULL;
 			}
 		}
-		else if (delNode->left_child != NULL && delNode->right_child != NULL) {	
+		else if (HaveTwoChild(delNode)) {	
 			repNode = delNode->left_child;
 			while(repNode->right_child != NULL) {
-				repNode = repNode->right_child;
+				MoveRight(repNode);
 			}			
 			
 			if (repNode->left_child != NULL) {
 				lefNode = repNode->left_child;
 				while(lefNode->left_child != NULL) {
-					lefNode = lefNode->left_child;
+					MoveLeft(lefNode);
 				}
 			}
 			else {
 				lefNode = repNode;
 			}
 
-			if (delNode == tree->root) {
+			if (delNode == Root) {
 				repNode->parent->right_child = NULL;
 				repNode->right_child = delNode->right_child;
 				repNode->parent =  delNode->parent;
 				lefNode->left_child = delNode->left_child;
 				
-				tree->root = repNode;
+				Root = repNode;
 				delNode->left_child->parent = repNode;
 				delNode->right_child->parent = repNode;
 			}
@@ -98,7 +98,7 @@ void delete(int key) {
 					
 					delNode->left_child->parent = repNode;
 				}
-				if (delNode->parent->key > delNode->key) {
+				if (cmp(delNode->parent,delNode)) {
 					delNode->parent->left_child = repNode;
 				}
 				else {
@@ -115,7 +115,7 @@ void delete(int key) {
 				delNode->left_child->parent = lefNode;
 				delNode->right_child->parent = repNode;
 				
-				if (delNode->parent->key > delNode->key) {
+				if (cmp(delNode->parent,delNode)) {
 					delNode->parent->left_child = repNode;
 				}
 				else {
@@ -126,7 +126,7 @@ void delete(int key) {
 		else {
 			if (delNode->left_child != NULL) {
 				delNode->left_child->parent = delNode->parent;
-				if (delNode->parent->key > delNode->key) {
+				if (cmp(delNode->parent,delNode)) {
 					delNode->parent->left_child = delNode->left_child;
 				}
 				else {
@@ -135,7 +135,7 @@ void delete(int key) {
 			}
 			else {
 				delNode->right_child->parent = delNode->parent;
-				if (delNode->parent->key > delNode->key) {
+				if (cmp(delNode->parent,delNode)) {
 					delNode->parent->left_child = delNode->right_child;
 				}
 				else {
@@ -150,8 +150,8 @@ void delete(int key) {
 }
 
 node* search(int key) {
-	node* search_node = tree->root;
-	if (tree->root == NULL) {
+	node* search_node = Root;
+	if (Root == NULL) {
 		return NULL;
 	}
 	else {
@@ -160,10 +160,10 @@ node* search(int key) {
 				return search_node;
 			}
 			else if(search_node->key > key) {
-				search_node = search_node->left_child;
+				MoveLeft(search_node);
 			}
 			else {
-				search_node = search_node->right_child;
+				MoveRight(search_node);
 			}
 		}
 		return NULL;
@@ -182,7 +182,7 @@ void inorder(node* node) {
 }
 
 node* get_root() {
-	node* temp = tree->root;
+	node* temp = Root;
 	return temp;
 }
 	

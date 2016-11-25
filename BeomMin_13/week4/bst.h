@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define cmp(x,y) (x->key) > (y->key)
+#define HaveTwoChild(x) (x->left_child != NULL) && (x->right_child != NULL)
+#define HaveZeroChild(x) (x->left_child == NULL) && (x->right_child == NULL)
+#define Root  tree->root
+#define MoveLeft(x) (x) = (x->left_child)
+#define MoveRight(x) (x) = (x->right_child)
 typedef struct node{
 	int key;
 	int data;

@@ -15,18 +15,28 @@ typedef struct node{
 	struct node* parent;
 }node;
 
-typedef struct {
-	node* root;
-}bst;
-
-bst* tree;
+node* root;
 
 node* make_node(int, int);
 
 void init_bst();
 
-void insert(node*);
+void insert(int, int);
 void delete(int);
 node* search(int);
 void inorder(node*);
 node* get_root();
+
+void search_insert_space(node*, node*);
+void zero_deletion(node*); // if tree has zero child
+
+node* search_replace_node(node*);
+node* left_node_of_replace_node(node*, node*);
+void two_deletion_root(node*, node*, node*);
+void two_deletion_replace_node(node*, node*);
+void two_deletion_middle (node*, node*, node*);
+
+void one_deletion_left (node*);
+void one_deletion_right (node*);
+
+void init_delete_node (node*);

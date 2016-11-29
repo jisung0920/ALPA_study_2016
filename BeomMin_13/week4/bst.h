@@ -32,9 +32,9 @@ void zero_deletion(node*); // if tree has zero child
 
 node* search_replace_node(node*);
 node* left_node_of_replace_node(node*, node*);
-void two_deletion_root(node*, node*, node*);
+void two_deletion_root(node*, node*);
 void two_deletion_replace_node(node*, node*);
-void two_deletion_middle (node*, node*, node*);
+void two_deletion_middle (node*, node*);
 
 void one_deletion_left (node*);
 void one_deletion_right (node*);

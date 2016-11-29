@@ -61,12 +61,20 @@ node* left_node_of_replace_node(node* repNode, node* lefNode) {
 	return lefNode;
 }
 
-void two_deletion_root(node* delNode, node* repNode, node* lefNode) {
-	repNode->parent->right_child = NULL;
+void two_deletion_root(node* delNode, node* repNode) {
+	
+	if(repNode->left_child != NULL) {	
+		repNode->left_child->parent = repNode->parent;
+		repNode->parent->right_child = repNode->left_child;
+	}
+	else {
+		repNode->parent->right_child = NULL;
+	}
+	repNode->left_child = delNode->left_child;
 	repNode->right_child = delNode->right_child;
 	repNode->parent =  delNode->parent;
-	lefNode->left_child = delNode->left_child;
-				
+//	lefNode->left_child = delNode->left_child;
+					
 	root = repNode;
 	delNode->left_child->parent = repNode;
 	delNode->right_child->parent = repNode;
@@ -93,14 +101,21 @@ void two_deletion_replace_node(node* delNode, node* repNode) {
 	}
 }
 
-void two_deletion_middle (node* delNode, node* repNode, node* lefNode) {
-	repNode->parent->right_child = NULL;
+void two_deletion_middle (node* delNode, node* repNode) {
+	if (repNode->left_child != NULL) {
+	repNode->left_child->parent = repNode->parent;
+	repNode->parent->right_child = repNode->left_child;
+	}
+	else {
+		repNode->parent->right_child = NULL;
+	}
 	repNode->right_child = delNode->right_child;
-	lefNode->left_child = delNode->left_child;
+	repNode->left_child = delNode->left_child;
+	//lefNode->left_child = delNode->left_child;
 	repNode->parent = delNode->parent;
 				
 				
-	delNode->left_child->parent = lefNode;
+	delNode->left_child->parent = repNode;
 	delNode->right_child->parent = repNode;
 			
 	if (cmp(delNode->parent,delNode)) {

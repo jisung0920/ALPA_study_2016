@@ -24,7 +24,7 @@ void delete(int key) {
 	else {
 		node* delNode = search(key);
 		node* repNode;
-		node* lefNode;
+		//node* lefNode;
 		if (HaveZeroChild(delNode)) {
 			zero_deletion(delNode);
 		}
@@ -32,16 +32,16 @@ void delete(int key) {
 			repNode = delNode->left_child;
 			repNode = search_replace_node(repNode);			
 			
-			lefNode = left_node_of_replace_node(repNode, lefNode);
+			//lefNode = left_node_of_replace_node(repNode, lefNode);
 
 			if (delNode == root) {
-				two_deletion_root(delNode, repNode, lefNode);			
+				two_deletion_root(delNode, repNode);			
 			}
 			else if (delNode->left_child == repNode || delNode->right_child == repNode ) {
 				two_deletion_replace_node(delNode, repNode);
 			}
 			else {
-				two_deletion_middle(delNode, repNode, lefNode);
+				two_deletion_middle(delNode, repNode);
 			}
 		}
 		else {

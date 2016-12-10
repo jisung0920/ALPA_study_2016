@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
-#define ROW 4
-#define COL 4
+#define ROW 2
+#define COL 2
 
 
 void matprint(float (*arry)[COL]);
